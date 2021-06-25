@@ -16,7 +16,7 @@ export default function logIn(app, connection){
             
                 const token = uuid();
                 const sql = `SELECT * FROM sessions
-                            WHERE "userID" = $1`;
+                            WHERE "userId" = $1`;
                 const logged = await connection.query(sql, [user.id]);
                 const stillLogged = logged.rows[0];
 
@@ -43,6 +43,5 @@ export default function logIn(app, connection){
         console.log(error);
         res.sendStatus(500);
         }
-
     });
 }
