@@ -28,8 +28,7 @@ export default function logIn(app, connection){
                     });
                 }else {
 
-                    const sql = `INSERT INTO sessions
-                                ("userId", token)
+                    const sql = `INSERT INTO sessions ("userId", token)
                                 VALUES ($1, $2)`;
                     await connection.query(sql, [user.id, token]);
                     return res.send({

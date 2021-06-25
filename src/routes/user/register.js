@@ -25,8 +25,7 @@ export default function register(app, connection) {
 
       } else {
         const encryptedPassword = bcrypt.hashSync(password, 12);
-        const sql = `INSERT INTO users
-                    (name, email, password) 
+        const sql = `INSERT INTO users (name, email, password) 
                     VALUES ($1, $2, $3)`;
         await connection.query(sql, [name, email, encryptedPassword]);
         res.sendStatus(201);
