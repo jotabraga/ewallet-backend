@@ -5,8 +5,6 @@ export default function logOut(app, connection){
 
 		try {  
             const token = req.headers['authorization']?.replace("Bearer ", "");
-            //const token = req.body.token.replace("Bearer ", "");
-            //console.log(req.body.token);
 
 			if (!token){
                 return res.sendStatus(400);
