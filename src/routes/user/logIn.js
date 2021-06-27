@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
 
 export default function logIn(app, connection){
-    app.post("/login", async (req, res) => {
+    app.post("/log-in", async (req, res) => {
 
         const { email, password } = req.body;
 
