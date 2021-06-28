@@ -21,7 +21,7 @@ export default function getTransactions(app, connection){
 
             } else{
                 const { userId } = stillLogged;
-                const entriesSql = `SELECT * FROM transactions 
+                const entriesSql = `SELECT * FROM transaction 
                                     WHERE "userId" = $1`;
                 const transactions = await connection.query(entriesSql, [userId]);
 

@@ -21,7 +21,7 @@ export default function registerTransaction(app, connection){
 
             } else {
                 const date = dayjs().format('YYYY-MM-DD');
-                const sql = `INSERT INTO transactions
+                const sql = `INSERT INTO transaction
                             ("userId", value, description, date, type)
                             VALUES ($1, $2, $3, $4, $5)`;
     
