@@ -14,7 +14,7 @@ export default function registerTransaction(app, connection){
             const sql = `SELECT * FROM sessions 
                          WHERE token = $1`;
 			const logged = await connection.query(sql, [token]);
-			const stillLogged = session.rows[0];
+			const stillLogged = logged.rows[0];
 
 			if (!stillLogged){
                 return res.send(401);
@@ -22,7 +22,7 @@ export default function registerTransaction(app, connection){
             } else {
                 const date = dayjs().format('YYYY-MM-DD');
                 const sql = `INSERT INTO transaction
-                            ("userId", value, description, date, type)
+                            ("userId", amount, description, date, type)
                             VALUES ($1, $2, $3, $4, $5)`;
     
                 await connection.query(sql, [stillLogged.userId, Math.abs(amount * 100),

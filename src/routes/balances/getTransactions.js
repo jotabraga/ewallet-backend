@@ -25,14 +25,14 @@ export default function getTransactions(app, connection){
                                     WHERE "userId" = $1`;
                 const transactions = await connection.query(entriesSql, [userId]);
 
-                const infoToShow = transactions.map((t) => {
+                const infoToShow = transactions.rows.map((t) => {
                     t.date = dayjs(t.date).format("DD/MM");
                     delete t.userId;
                     return t;
                 });
 
-                const balance = transactions.reduce((acc, cur) => {
-                    cur.type === 'income' ? acc + cur.value : acc - cur.value, 0
+                const balance = transactions.rows.reduce((acc, cur) => {
+                    cur.type === 'deposit' ? acc + cur.value : acc - cur.value, 0
                 });              
                                   
                 res.send({infoToShow, balance});
