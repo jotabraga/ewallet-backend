@@ -34,8 +34,7 @@ export default function getTransactions(app, connection){
                 const balance = transactions.rows.reduce((acc, transaction) => 
                    transaction.type === 'deposit' ? acc + transaction.amount : acc - transaction.amount, 0
                 ); 
-                console.log(infoToShow);
-                
+                                
                 res.send({infoToShow, balance});
             }
 
