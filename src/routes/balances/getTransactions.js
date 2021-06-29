@@ -31,10 +31,11 @@ export default function getTransactions(app, connection){
                     return t;
                 });
 
-                const balance = transactions.rows.reduce((acc, cur) => {
-                    cur.type === 'deposit' ? acc + cur.value : acc - cur.value, 0
-                });              
-                                  
+                const balance = transactions.rows.reduce((acc, transaction) => 
+                   transaction.type === 'deposit' ? acc + transaction.amount : acc - transaction.amount, 0
+                ); 
+                console.log(infoToShow);
+                
                 res.send({infoToShow, balance});
             }
 
