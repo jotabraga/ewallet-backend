@@ -1,5 +1,9 @@
-import app from "./app";
+import app from "./app.js";
+import {config} from "dotenv";
 
-app.listen(4000, () => {
-    console.log("Jota server online on port 4000");
-  });
+config();
+const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log("Jota server online on port " +port);
+});
