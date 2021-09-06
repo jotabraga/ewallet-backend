@@ -5,5 +5,5 @@ config();
 const port = process.env.PORT;
 
 app.listen(port, () => {
-    console.log("Jota server online on port " +port);
+    console.log("Server online on port " +port);
 });
