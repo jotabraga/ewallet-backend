@@ -1,13 +1,13 @@
-import pg from 'pg';
+import "../setup.js";
+import pg from "pg";
 
 const { Pool } = pg;
-
-const connection = new Pool({
-  host: 'localhost',
-  user: 'postgres',
-  password: '123456',
-  database: 'mywallet',
-  port: 5432
-  });
+const config = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+};
+const connection = new Pool(config);
 
 export default connection;
