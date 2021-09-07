@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.7 (Ubuntu 12.7-0ubuntu0.20.04.1)
--- Dumped by pg_dump version 12.7 (Ubuntu 12.7-0ubuntu0.20.04.1)
+-- Dumped from database version 12.8 (Ubuntu 12.8-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.8 (Ubuntu 12.8-0ubuntu0.20.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,68 +21,26 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: register; Type: TABLE; Schema: public; Owner: -
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.register (
-    id integer NOT NULL,
-    date date,
-    description text,
-    value double precision,
-    type text,
-    "userId" text
-);
-
-
---
--- Name: register_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.register_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: register_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.register_id_seq OWNED BY public.register.id;
-
-
---
--- Name: userToken; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public."userToken" (
-    id integer NOT NULL,
+CREATE TABLE public.sessions (
     "userId" integer,
     token text
 );
 
 
 --
--- Name: userToken_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: transaction; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public."userToken_id_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: userToken_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."userToken_id_seq" OWNED BY public."userToken".id;
+CREATE TABLE public.transaction (
+    "userId" integer,
+    amount integer,
+    description text,
+    date text,
+    type text
+);
 
 
 --
@@ -118,20 +76,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: register id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.register ALTER COLUMN id SET DEFAULT nextval('public.register_id_seq'::regclass);
-
-
---
--- Name: userToken id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public."userToken" ALTER COLUMN id SET DEFAULT nextval('public."userToken_id_seq"'::regclass);
-
-
---
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -139,47 +83,36 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Data for Name: register; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 
 
 --
--- Data for Name: userToken; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: transaction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public."userToken" VALUES (398, 297, '276d2a84-7d58-40e5-86e5-8fbf92816544');
-INSERT INTO public."userToken" VALUES (400, 299, 'a728703e-33df-41eb-b01a-472090152652');
+INSERT INTO public.transaction VALUES (2, 600000, 'salary', '2021-06-28', 'deposit');
+INSERT INTO public.transaction VALUES (2, 1500, 'lanche', '2021-06-28', 'expense');
+INSERT INTO public.transaction VALUES (2, 4000, 'Pizza', '2021-09-06', 'expense');
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (299, 'teste', 'teste@teste.com', '$2b$12$SqhEO9QvNdAMz1JUVOPSpO8RTU1vrQDoiePiHIUu45pe8L7n3H6Gm');
-
-
---
--- Name: register_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.register_id_seq', 77, true);
-
-
---
--- Name: userToken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."userToken_id_seq"', 400, true);
+INSERT INTO public.users VALUES (1, 'JP', 'teste@teste.com', '$2b$12$N/.NGVGvGz8gToRXCX26keCYjmtLdrFalPJlQ4wRVZ0ljroQlVtYG');
+INSERT INTO public.users VALUES (2, 'jp', 'jp@gmail.com', '$2b$12$ugshEoHmOjf4c55MVD184u60QKT8u9EoNhiOEu/w24Sg5UDKLV5FC');
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 299, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
+
