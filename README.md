@@ -1,4 +1,4 @@
-# E-wallet 💸:
+# E-wallet 💸
 A helpful tool to control your personal finances 🤑
 ## Preview 👀
 ![E-Wallet_preview](./src/assets/e-wallet.gif) 
