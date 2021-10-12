@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest -i",
+    "test": "NODE_ENV=test npx jest -i",
     "start": "node ./src/server.js"
   },
   "keywords": [],
