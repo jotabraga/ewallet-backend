@@ -12,6 +12,7 @@ This is an web aplication wich students can share their old tests and find the o
 - [x] Final value of the balance
 ### Future improvements 🔮
 - [ ] Delete new entrance
+- [ ] Edit balance data
 - [ ] Month balance chart
 - [ ] Investment simulation
 ## Tech tools 🔧
